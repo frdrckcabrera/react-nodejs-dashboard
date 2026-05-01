@@ -1,0 +1,281 @@
+:root {
+  color: #172026;
+  background: #f6f7f4;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button {
+  align-items: center;
+  background: #172026;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.dashboard-page {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 32px;
+}
+
+.dashboard-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.dashboard-header p,
+.metric-card p,
+.importer p,
+.panel-heading span {
+  color: #5a656a;
+  margin: 0;
+}
+
+.dashboard-header h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  margin: 8px 0 0;
+}
+
+.importer {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dde2df;
+  border-radius: 8px;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  min-width: min(480px, 100%);
+  padding: 16px;
+}
+
+.importer h2,
+.panel-heading h2 {
+  font-size: 1rem;
+  margin: 0 0 4px;
+}
+
+.visually-hidden {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+.alert {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 8px;
+  color: #9f1239;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+}
+
+.loading-bar {
+  animation: pulse 1s infinite alternate;
+  background: #0f766e;
+  border-radius: 999px;
+  height: 4px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.metrics-grid,
+.charts-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.metrics-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.charts-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(340px, 0.75fr);
+  margin-bottom: 16px;
+}
+
+.metric-card,
+.chart-panel,
+.table-panel {
+  background: #ffffff;
+  border: 1px solid #dde2df;
+  border-radius: 8px;
+}
+
+.metric-card {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+  min-height: 142px;
+  padding: 20px;
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 1.8rem;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+
+.metric-card span {
+  color: #6a7479;
+}
+
+.metric-card__icon {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.metric-card--income .metric-card__icon,
+.type-badge--income {
+  background: #dff3ee;
+  color: #0f766e;
+}
+
+.metric-card--expense .metric-card__icon,
+.type-badge--expense {
+  background: #fff3dd;
+  color: #b45309;
+}
+
+.metric-card--saving .metric-card__icon {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.metric-card--neutral .metric-card__icon {
+  background: #eef0f2;
+  color: #475569;
+}
+
+.panel-heading {
+  align-items: center;
+  border-bottom: 1px solid #e5e8e6;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 18px;
+}
+
+.chart-panel__body {
+  height: 350px;
+  padding: 18px;
+}
+
+.empty-state {
+  align-items: center;
+  color: #6a7479;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  min-height: 120px;
+  text-align: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 760px;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid #edf0ee;
+  padding: 14px 18px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: #5a656a;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.type-badge {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  text-transform: capitalize;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 980px) {
+  .dashboard-header,
+  .importer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .metrics-grid,
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chart-panel--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard-page {
+    padding: 18px;
+  }
+
+  .metrics-grid,
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-panel--wide {
+    grid-column: auto;
+  }
+}
