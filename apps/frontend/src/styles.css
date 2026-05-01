@@ -35,6 +35,12 @@ button:disabled {
   opacity: 0.7;
 }
 
+.button-secondary {
+  background: #ffffff;
+  border: 1px solid #cbd5d1;
+  color: #172026;
+}
+
 .dashboard-page {
   margin: 0 auto;
   max-width: 1280px;
@@ -73,6 +79,13 @@ button:disabled {
   justify-content: space-between;
   min-width: min(480px, 100%);
   padding: 16px;
+}
+
+.importer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .importer h2,

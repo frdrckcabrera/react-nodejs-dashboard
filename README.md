@@ -17,29 +17,29 @@ Recharts is a strong fit for this dashboard because it provides React-native cha
 
 ```text
 .
-├── apps
-│   ├── backend
-│   │   ├── src
-│   │   │   ├── config
-│   │   │   ├── controllers
-│   │   │   ├── database
-│   │   │   ├── repositories
-│   │   │   ├── scripts
-│   │   │   ├── services
-│   │   │   └── utils
-│   │   └── package.json
-│   └── frontend
-│       ├── src
-│       │   ├── api
-│       │   ├── components
-│       │   ├── pages
-│       │   ├── types
-│       │   └── utils
-│       └── package.json
-├── docker
-│   └── mysql
-├── docker-compose.yml
-└── package.json
++-- apps
+|   +-- backend
+|   |   +-- src
+|   |   |   +-- config
+|   |   |   +-- controllers
+|   |   |   +-- database
+|   |   |   +-- repositories
+|   |   |   +-- scripts
+|   |   |   +-- services
+|   |   |   +-- utils
+|   |   +-- package.json
+|   +-- frontend
+|       +-- src
+|       |   +-- api
+|       |   +-- components
+|       |   +-- pages
+|       |   +-- types
+|       |   +-- utils
+|       +-- package.json
++-- docker
+|   +-- mysql
++-- docker-compose.yml
++-- package.json
 ```
 
 ## XLSX Import Format
@@ -107,6 +107,18 @@ Response:
 {
   "importedCount": 12,
   "skippedCount": 0
+}
+```
+
+### `DELETE /api/transactions`
+
+Clears every imported transaction row from the MySQL table.
+
+Response:
+
+```json
+{
+  "deletedCount": 47
 }
 ```
 

@@ -125,6 +125,15 @@ export class TransactionRepository {
   }
 
   /**
+   * Deletes every transaction row from the dashboard data table.
+   * @returns {Promise<number>}
+   */
+  async deleteAllTransactions() {
+    const [result] = await this.pool.query('DELETE FROM transactions');
+    return result.affectedRows;
+  }
+
+  /**
    * Converts raw MySQL values into API-friendly transaction objects.
    * @param {object} row
    * @returns {object}

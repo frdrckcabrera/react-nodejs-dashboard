@@ -1,4 +1,4 @@
-import type { DashboardOverview, ImportResult } from '../types/finance';
+import type { DashboardOverview, ImportResult, ResetResult } from '../types/finance';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api';
 
@@ -32,6 +32,23 @@ export async function uploadExpenseWorkbook(file: File): Promise<ImportResult> {
 
   if (!response.ok) {
     const payload = await response.json().catch(() => ({ message: 'Import failed.' }));
+    throw new Error(payload.message);
+  }
+
+  return response.json();
+}
+
+/**
+ * Clears all imported transaction records from the backend database.
+ * @returns {Promise<ResetResult>}
+ */
+export async function resetImportedTransactions(): Promise<ResetResult> {
+  const response = await fetch(`${API_BASE_URL}/transactions`, {
+    method: 'DELETE'
+  });
+
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({ message: 'Reset failed.' }));
     throw new Error(payload.message);
   }
 

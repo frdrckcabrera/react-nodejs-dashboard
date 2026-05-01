@@ -40,3 +40,7 @@ export interface ImportResult {
   importedCount: number;
   skippedCount: number;
 }
+
+export interface ResetResult {
+  deletedCount: number;
+}

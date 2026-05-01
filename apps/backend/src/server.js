@@ -2,11 +2,13 @@ import http from 'http';
 import { serverConfig } from './config/database.js';
 import { mysqlPool, verifyDatabaseConnection } from './database/mysqlPool.js';
 import { DashboardController } from './controllers/dashboardController.js';
+import { TransactionController } from './controllers/transactionController.js';
 import { UploadController } from './controllers/uploadController.js';
 import { Router } from './router.js';
 import { DashboardService } from './services/dashboardService.js';
 import { ExcelParserService } from './services/excelParserService.js';
 import { TransactionImportService } from './services/transactionImportService.js';
+import { TransactionResetService } from './services/transactionResetService.js';
 import { TransactionRepository } from './repositories/transactionRepository.js';
 import { sendJson } from './utils/httpResponse.js';
 
@@ -14,12 +16,15 @@ const transactionRepository = new TransactionRepository(mysqlPool);
 const dashboardService = new DashboardService(transactionRepository);
 const excelParserService = new ExcelParserService();
 const transactionImportService = new TransactionImportService(excelParserService, transactionRepository);
+const transactionResetService = new TransactionResetService(transactionRepository);
 const dashboardController = new DashboardController(dashboardService);
+const transactionController = new TransactionController(transactionResetService);
 const uploadController = new UploadController(transactionImportService);
 const router = new Router();
 
 router.register('GET', '/api/dashboard', dashboardController.getOverview.bind(dashboardController));
 router.register('POST', '/api/import', uploadController.importTransactions.bind(uploadController));
+router.register('DELETE', '/api/transactions', transactionController.deleteTransactions.bind(transactionController));
 
 /**
  * Applies CORS headers required by the Vite development frontend.
@@ -28,7 +33,7 @@ router.register('POST', '/api/import', uploadController.importTransactions.bind(
  */
 function applyCorsHeaders(response) {
   response.setHeader('Access-Control-Allow-Origin', serverConfig.corsOrigin);
-  response.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  response.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
 
