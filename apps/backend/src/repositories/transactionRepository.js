@@ -27,7 +27,7 @@ export class TransactionRepository {
     ]);
 
     const [result] = await this.pool.query(
-      `INSERT INTO transactions
+      `INSERT IGNORE INTO transactions
         (transaction_date, description, category, transaction_type, amount, source)
        VALUES ?`,
       [values]

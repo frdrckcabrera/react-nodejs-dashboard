@@ -65,6 +65,8 @@ Recommended workbook example:
 
 If `type` is missing, positive values become income and negative values become expenses.
 
+Duplicate uploads are ignored by a MySQL unique constraint across date, description, category, type, amount, and source. The import response reports duplicate rows in `skippedCount`.
+
 ## Run With Docker
 
 ```bash
@@ -89,6 +91,12 @@ cp apps/backend/.env.example apps/backend/.env
 npm run db:init
 npm run dev:backend
 npm run dev:frontend
+```
+
+For an existing database created before the unique import constraint, run:
+
+```bash
+npm run db:migrate:unique-transactions --workspace backend
 ```
 
 ## API Endpoints

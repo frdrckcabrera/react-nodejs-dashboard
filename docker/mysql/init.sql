@@ -10,5 +10,13 @@ CREATE TABLE IF NOT EXISTS transactions (
   PRIMARY KEY (id),
   INDEX idx_transactions_date (transaction_date),
   INDEX idx_transactions_type (transaction_type),
-  INDEX idx_transactions_category (category)
+  INDEX idx_transactions_category (category),
+  UNIQUE KEY uq_transactions_import_identity (
+    transaction_date,
+    description,
+    category,
+    transaction_type,
+    amount,
+    source
+  )
 );
