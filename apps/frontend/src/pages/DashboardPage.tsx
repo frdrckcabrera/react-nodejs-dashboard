@@ -61,7 +61,6 @@ export function DashboardPage() {
     <main className="dashboard-page">
       <header className="dashboard-header">
         <div>
-          <p>Personal finance</p>
           <h1>Expenses Dashboard</h1>
         </div>
         <WorkbookImporter onImported={loadDashboardOverview} />
